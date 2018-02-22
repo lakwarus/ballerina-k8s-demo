@@ -4,7 +4,8 @@ import ballerina.net.http;
 @kubernetes:deployment {
     name:"foodstore",
     replicas:3,
-    labels:"location:SL,city:COLOMBO"
+    labels:"location:SL,city:COLOMBO",
+    liveness:"enable"
 }
 @kubernetes:svc {}
 @kubernetes:ingress {
@@ -31,8 +32,8 @@ service<http> PizzaAPI {
 @kubernetes:svc {}
 @kubernetes:ingress {
     hostname:"burger.com",
-    path:"/burgerstore",
-    targetPath:"/"
+    path:"/",
+    targetPath:"/burger"
 }
 @http:configuration {
     basePath:"/burger",

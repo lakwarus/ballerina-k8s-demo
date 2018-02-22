@@ -6,7 +6,9 @@ import ballerina.kubernetes;
 @kubernetes:deployment{}
 @kubernetes:svc{}
 @kubernetes:ingress{}
-@http:configuration {basePath:"/pet"}
+@http:configuration {
+    basePath:"/pet"
+}
 service<http> petService {
 
     endpoint<sql:ClientConnector> petDB {
@@ -14,7 +16,10 @@ service<http> petService {
         sql:DB.MYSQL, "localhost", 3306, "petdb", "root", "root", {maximumPoolSize:5});
     }
 
-    @http:resourceConfig {methods:["GET"], path:"/all"}
+    @http:resourceConfig {
+        methods:["GET"],
+        path:"/all"
+    }
     resource getAllPet (http:Connection conn, http:InRequest req) {
         log:printInfo("Retrieving All Pets");
         table dt = petDB.select("SELECT * FROM pet",null,null);
@@ -24,7 +29,10 @@ service<http> petService {
         _ = conn.respond(resp);
     }
 
-    @http:resourceConfig {methods:["GET"], path:"/{id}"}
+    @http:resourceConfig {
+        methods:["GET"],
+        path:"/{id}"
+    }
     resource getPet (http:Connection conn, http:InRequest req, string id) {
         log:printInfo("Retrieving a Pets");
         sql:Parameter[] params = [];
@@ -37,7 +45,10 @@ service<http> petService {
         _ = conn.respond(resp);
     }
 
-    @http:resourceConfig {methods:["POST"], path:"/"}
+    @http:resourceConfig {
+        methods:["POST"],
+        path:"/"
+    }
     resource addPet (http:Connection conn, http:InRequest req) {
         log:printInfo("Adding Pet");
         json jsonMsg = req.getJsonPayload();
@@ -59,7 +70,10 @@ service<http> petService {
         _ = conn.respond(resp);
     }
 
-    @http:resourceConfig {methods:["DELETE"], path:"/{id}"}
+    @http:resourceConfig {
+        methods:["DELETE"],
+        path:"/{id}"
+    }
     resource deletePet (http:Connection conn, http:InRequest req, string id) {
         log:printInfo("Deleting Pet");
         sql:Parameter[] params = [];
@@ -74,7 +88,9 @@ service<http> petService {
 }
 
 
-@http:configuration {basePath:"/category"}
+@http:configuration {
+    basePath:"/category"
+}
 service<http> petCategoryService {
 
     endpoint<sql:ClientConnector> petDB {
@@ -82,7 +98,10 @@ service<http> petCategoryService {
         sql:DB.MYSQL, "localhost", 3306, "petdb", "root", "root", {maximumPoolSize:5});
     }
 
-    @http:resourceConfig {methods:["GET"], path:"/all"}
+    @http:resourceConfig {
+        methods:["GET"],
+        path:"/all"
+    }
     resource getAllPetCategory (http:Connection conn,http:InRequest req) {
         log:printInfo("Retrieving All Category");
         table dt = petDB.select("SELECT * FROM category",null,null);
@@ -93,7 +112,10 @@ service<http> petCategoryService {
     }
     
 
-    @http:resourceConfig {methods:["POST"], path:"/"}
+    @http:resourceConfig {
+        methods:["POST"],
+        path:"/"
+    }
     resource addPetCategory (http:Connection conn, http:InRequest req) {
         log:printInfo("Adding Pet");
         json jsonMsg = req.getJsonPayload();
@@ -109,7 +131,10 @@ service<http> petCategoryService {
         _ = conn.respond(resp);
     }
 
-    @http:resourceConfig {methods:["DELETE"], path:"/{id}"}
+    @http:resourceConfig {
+        methods:["DELETE"],
+        path:"/{id}"
+    }
     resource deletePetCategory (http:Connection conn, http:InRequest req, string id) {
         log:printInfo("Deleting Pet Category");
         sql:Parameter[] params = [];
