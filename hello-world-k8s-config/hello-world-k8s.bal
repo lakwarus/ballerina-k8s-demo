@@ -2,10 +2,14 @@ import ballerina.net.http;
 import ballerina.kubernetes;
 
 
-@kubernetes:deployment{imageBuild:true}
+@kubernetes:deployment{}
 @kubernetes:svc{}
-@kubernetes:ingress{hostname:"abc.com"}
-@http:configuration {basePath:"/helloWorld"}
+@kubernetes:ingress{
+    hostname:"abc.com"
+}
+@http:configuration {
+    basePath:"/helloWorld"
+}
 service<http> helloWorld {
     resource sayHello (http:Connection conn, http:InRequest req) {
         http:OutResponse res = {};

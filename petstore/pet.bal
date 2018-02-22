@@ -1,7 +1,11 @@
 import ballerina.log;
 import ballerina.data.sql;
 import ballerina.net.http;
+import ballerina.kubernetes;
 
+@kubernetes:deployment{}
+@kubernetes:svc{}
+@kubernetes:ingress{}
 @http:configuration {basePath:"/pet"}
 service<http> petService {
 

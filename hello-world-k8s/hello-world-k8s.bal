@@ -5,7 +5,9 @@ import ballerina.kubernetes;
 @kubernetes:deployment{}
 @kubernetes:svc{}
 @kubernetes:ingress{}
-@http:configuration {basePath:"/helloWorld"}
+@http:configuration {
+    basePath:"/helloWorld"
+}
 service<http> helloWorld {
     resource sayHello (http:Connection conn, http:InRequest req) {
         http:OutResponse res = {};

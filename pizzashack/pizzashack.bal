@@ -1,10 +1,17 @@
 import ballerina.kubernetes;
 import ballerina.net.http;
 
-@kubernetes:deployment {image:"ballerina.com/pizzashack:2.1.0",imageBuild:true}
+@kubernetes:deployment {
+    image:"ballerina.com/pizzashack:2.1.0"
+}
 @kubernetes:svc{}
-@kubernetes :ingress{ hostname:"pizzashack.com",path:"/customer"}
-@http:configuration {basePath:"/customer"}
+@kubernetes :ingress{
+    hostname:"pizzashack.com",
+    path:"/customer"
+}
+@http:configuration {
+    basePath:"/customer"
+}
 service<http> Customer {
     @http:resourceConfig {
         methods:["GET"],
@@ -19,7 +26,9 @@ service<http> Customer {
 
 @kubernetes:svc{}
 @kubernetes:ingress{}
-@http:configuration {basePath:"/orders"}
+@http:configuration {
+    basePath:"/orders"
+}
 service<http> Order {
     @http:resourceConfig {
         methods:["GET"],

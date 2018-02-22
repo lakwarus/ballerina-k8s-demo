@@ -1,9 +1,20 @@
 import ballerina.kubernetes;
 import ballerina.net.http;
-@kubernetes:deployment {name:"FoodStore", replicas:3, labels:"location:SL,city:COLOMBO"}
+
+@kubernetes:deployment {
+    name:"foodstore",
+    replicas:3,
+    labels:"location:SL,city:COLOMBO"
+}
 @kubernetes:svc {}
-@kubernetes:ingress {hostname:"pizza.com", path:"/pizzastore"}
-@http:configuration {basePath:"/pizza", port:9099}
+@kubernetes:ingress {
+    hostname:"pizza.com",
+    path:"/pizzastore"
+}
+@http:configuration {
+    basePath:"/pizza",
+    port:9099
+}
 service<http> PizzaAPI {
     @http:resourceConfig {
         methods:["GET"],
@@ -17,8 +28,14 @@ service<http> PizzaAPI {
 }
 
 @kubernetes:svc {}
-@kubernetes:ingress {hostname:"burger.com", path:"/burgerstore"}
-@http:configuration {basePath:"/burger", port:9096}
+@kubernetes:ingress {
+    hostname:"burger.com",
+    path:"/burgerstore"
+}
+@http:configuration {
+    basePath:"/burger",
+    port:9096
+}
 service<http> BurgerAPI {
     @http:resourceConfig {
         methods:["GET"],
