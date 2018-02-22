@@ -7,7 +7,7 @@ import ballerina.net.http;
 @kubernetes:svc{}
 @kubernetes :ingress{
     hostname:"pizzashack.com",
-    path:"/customer"
+    path:"/"
 }
 @http:configuration {
     basePath:"/customer"
