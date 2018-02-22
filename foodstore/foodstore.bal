@@ -9,7 +9,8 @@ import ballerina.net.http;
 @kubernetes:svc {}
 @kubernetes:ingress {
     hostname:"pizza.com",
-    path:"/pizzastore"
+    path:"/pizzastore",
+    targetPath:"/"
 }
 @http:configuration {
     basePath:"/pizza",
@@ -30,7 +31,8 @@ service<http> PizzaAPI {
 @kubernetes:svc {}
 @kubernetes:ingress {
     hostname:"burger.com",
-    path:"/burgerstore"
+    path:"/burgerstore",
+    targetPath:"/"
 }
 @http:configuration {
     basePath:"/burger",

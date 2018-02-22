@@ -2,7 +2,7 @@ import ballerina.net.http;
 import ballerina.kubernetes;
 
 
-@kubernetes:deployment{}
+@kubernetes:deployment{liveness:"enable"}
 @kubernetes:svc{}
 @kubernetes:ingress{
     hostname:"abc.com"
