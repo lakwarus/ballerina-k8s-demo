@@ -3,6 +3,12 @@ import ballerina.data.sql;
 import ballerina.net.http;
 import ballerina.kubernetes;
 
+
+@kubernetes:external:deployment{
+                         name:"mysql-server"
+                     }
+@kubernetes:external:svc{}
+
 @kubernetes:deployment{}
 @kubernetes:svc{}
 @kubernetes:ingress{}
@@ -13,7 +19,7 @@ service<http> petService {
 
     endpoint<sql:ClientConnector> petDB {
         create sql:ClientConnector(
-        sql:DB.MYSQL, "localhost", 3306, "petdb", "root", "root", {maximumPoolSize:5});
+        sql:DB.MYSQL, "mysql-server", 3306, "petdb", "root", "root", {maximumPoolSize:5});
     }
 
     @http:resourceConfig {
