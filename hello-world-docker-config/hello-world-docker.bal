@@ -2,9 +2,10 @@ import ballerina.docker;
 import ballerina.net.http;
 
 @docker:configuration {
-    registry:"docker.abc.com",
-    name:"helloworld",
-    tag:"v1.0"
+    push:true,
+    registry:"index.docker.io/anuruddhal",
+    username:"anuruddhal",
+    password:"**********"
 }
 @http:configuration {
     basePath:"/helloWorld"
