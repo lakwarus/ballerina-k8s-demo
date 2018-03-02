@@ -1,7 +1,6 @@
-## Sample3: Ballerina program with multiple services with same port differenet host mappings
+## Sample3: Ballerina program with multiple services with different ports
 
-- This sample runs 2 ballerina pizzashack api service in kubernetes cluster mapping for ingress.
-- This program has two services with two base paths. (/customer,/orders)
+- This sample deploy ballerina program 2 services with two base paths. (/bureger,/pizza)
 - The ingress is configured so that two APIs can be accessed as following.
     http://pizzashack.com/customer
     http://order.com/orders
